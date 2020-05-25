@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ColoredTilesGame/precache-manifest.ed3faaf48034f263604fd17d0a9ac65d.js"
+  "/ColoredTilesGame/precache-manifest.a7a22659b44478b8bf322158eac114a5.js"
 );
 
 self.addEventListener('message', (event) => {

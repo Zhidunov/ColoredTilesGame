@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ColoredTilesGame/static/css/main.7780f305.chunk.css",
-    "main.js": "/ColoredTilesGame/static/js/main.29eddc37.chunk.js",
-    "main.js.map": "/ColoredTilesGame/static/js/main.29eddc37.chunk.js.map",
+    "main.js": "/ColoredTilesGame/static/js/main.2611ab86.chunk.js",
+    "main.js.map": "/ColoredTilesGame/static/js/main.2611ab86.chunk.js.map",
     "runtime-main.js": "/ColoredTilesGame/static/js/runtime-main.0ffa8a77.js",
     "runtime-main.js.map": "/ColoredTilesGame/static/js/runtime-main.0ffa8a77.js.map",
     "static/js/2.74982282.chunk.js": "/ColoredTilesGame/static/js/2.74982282.chunk.js",
     "static/js/2.74982282.chunk.js.map": "/ColoredTilesGame/static/js/2.74982282.chunk.js.map",
     "index.html": "/ColoredTilesGame/index.html",
-    "precache-manifest.ed3faaf48034f263604fd17d0a9ac65d.js": "/ColoredTilesGame/precache-manifest.ed3faaf48034f263604fd17d0a9ac65d.js",
+    "precache-manifest.a7a22659b44478b8bf322158eac114a5.js": "/ColoredTilesGame/precache-manifest.a7a22659b44478b8bf322158eac114a5.js",
     "service-worker.js": "/ColoredTilesGame/service-worker.js",
     "static/css/main.7780f305.chunk.css.map": "/ColoredTilesGame/static/css/main.7780f305.chunk.css.map",
     "static/js/2.74982282.chunk.js.LICENSE.txt": "/ColoredTilesGame/static/js/2.74982282.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0ffa8a77.js",
     "static/js/2.74982282.chunk.js",
     "static/css/main.7780f305.chunk.css",
-    "static/js/main.29eddc37.chunk.js"
+    "static/js/main.2611ab86.chunk.js"
   ]
 }

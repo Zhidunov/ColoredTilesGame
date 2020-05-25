@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "22282530913c0b1682ed07e03b655dd5",
+    "revision": "ddac98fadbf4a018ca0be50a9f40eecf",
     "url": "/ColoredTilesGame/index.html"
   },
   {
-    "revision": "b34c617f7f8242808d7c",
+    "revision": "010c17138c25a38d90c3",
     "url": "/ColoredTilesGame/static/css/main.7780f305.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ColoredTilesGame/static/js/2.74982282.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b34c617f7f8242808d7c",
-    "url": "/ColoredTilesGame/static/js/main.29eddc37.chunk.js"
+    "revision": "010c17138c25a38d90c3",
+    "url": "/ColoredTilesGame/static/js/main.2611ab86.chunk.js"
   },
   {
     "revision": "6bfe1199676ef8674d4f",
