@@ -1,10 +1,8 @@
-import {combineReducers, createStore} from 'redux'
-import {gameReducer} from './gameRuducer'
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__();
+import { combineReducers, createStore } from "redux"
+import { gameReducer } from "src/redux/gameReducer"
 
 let reducers = combineReducers({
-    game: gameReducer
+  game: gameReducer,
 })
 
-export const store = createStore(reducers, composeEnhancers);
+export const store = createStore(reducers)

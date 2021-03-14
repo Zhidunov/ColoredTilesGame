@@ -1,18 +1,29 @@
-import React from "react";
-import {connect} from 'react-redux';
-import {mixCards} from '../../redux/actions'
-import Cards from "../Card/Cards";
-import "./Styles.css";
+import React, {useEffect} from "react"
+import {connect} from 'react-redux'
+import {mixCards} from 'src/redux/actions'
+import Cards from "src/components/Card/Cards"
+import styled from 'styled-components'
 
 const GameBoard = ({mixCards}) => {
 
-  mixCards();
+  useEffect(() => {
+    mixCards()
+  }, [mixCards])
     
   return (
-    <div className="gameboard">
+    <Root>
       <Cards />
-    </div>
-  );
-};
+    </Root>
+  )
+}
 
-export default connect(null, {mixCards})(GameBoard);
+export default connect(null, {mixCards})(GameBoard)
+
+const Root = styled.div`
+    width: 100vh;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none; 
+`

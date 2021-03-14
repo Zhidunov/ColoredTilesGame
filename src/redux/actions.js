@@ -4,39 +4,38 @@ import {
   SET_FLIPPED_CARD,
   REMOVE_LISTENER,
   UNFLIP_CARD,
-} from "./types";
+} from "src/redux/types"
 
 export const mixCards = () => {
   return {
     type: MIX_CARDS,
-  };
-};
+  }
+}
 
 export const flipCardAC = (id) => {
   return {
     type: FLIP_CARD,
-    id
-  };
-};
+    id,
+  }
+}
 
-export const setFlippedCard = (flippedCardState) => {
+export const setFlippedCard = (hasFlippedCard) => {
   return {
     type: SET_FLIPPED_CARD,
-    flippedCardState
-
-  };
-};
+    hasFlippedCard,
+  }
+}
 
 export const removeListener = (id) => {
   return {
     type: REMOVE_LISTENER,
-    id
-  };
-};
+    id,
+  }
+}
 
 export const unflipCardAC = (id) => {
   return {
     type: UNFLIP_CARD,
-    id
-  };
-};
+    id,
+  }
+}

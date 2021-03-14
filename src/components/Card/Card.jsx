@@ -1,40 +1,43 @@
 import React from "react";
-import menu from "./img/menu.png";
-import beer from "./img/beer.png";
-import burger from "./img/burger.png";
-import coffee from "./img/coffee.png";
-import hotdog from "./img/hotdog.png";
-import meat from "./img/meat.png";
-import noodles from "./img/noodles.png";
-import pizza from "./img/pizza.png";
-import snack from "./img/snack.png";
+import styled from 'styled-components'
+
+import menu from "src/assets/img/menu.png"
 
 const Card = ({ card, flipCard }) => {
 
-  let front;
-  switch(card.type){
-    case 'beer': front = beer; break;
-    case 'burger': front = burger; break;
-    case 'coffee': front = coffee; break;
-    case 'hotdog': front = hotdog; break;
-    case 'meat': front = meat; break;
-    case 'noodles': front = noodles; break;
-    case 'pizza': front = pizza; break;
-    case 'snack': front = snack; break;
-    default: front = menu;
-  }
-
   return (
-    <div
-      className={card.flipped ? "card flip" : "card"}
-      style={{ order: `${card.order}` }}
+    <CardRoot
+      order={card.order}
       data-type={card.type}
-      onClick={() => {card.onListen && flipCard(card.id)}}
+      onClick={() => card.onListen && flipCard(card.id)}
+      flipped={card.flipped}
     >
-      <img className="front" src={front} alt="" />
-      <img className="back" src={menu} alt="Menu" />
-    </div>
+      <CardImg front src={card.uri} alt="" />
+      <CardImg src={menu} alt="Menu" />
+    </CardRoot>
   );
 };
 
 export default Card;
+
+const CardRoot = styled.div`
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s;
+    ${({flipped}) => flipped && "transform: rotateY(180deg)"};
+    ${({order}) => `order: ${order}`};
+`
+
+const CardImg = styled.img`
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      position: absolute;
+      border-radius: 5px;
+      background: rgb(245, 229, 138);
+      backface-visibility: hidden;
+    ${({front}) => front && "transform: rotateY(180deg)"};
+`
