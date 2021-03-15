@@ -50,11 +50,58 @@ export const resetBoard = () => {
   }
 }
 
-export const resetGame = () => async (dispatch) => {
+export const resetGame = () => (dispatch) => {
   dispatch({
     type: RESET_GAME,
   })
-  setTimeout(() => dispatch(mixCards()), 1000)
+  setTimeout(async () => {
+    dispatch(mixCards())
+    dispatch(setLockBoard(false))
+  }, 700)
+}
+
+export const disableCards = (firstCard, secondCard) => (dispatch) => {
+  dispatch(removeListener(firstCard))
+  dispatch(removeListener(secondCard))
+  dispatch(resetBoard())
+}
+
+export const unflipCards = (firstCard, secondCard) => (dispatch) => {
+  dispatch(setLockBoard(true))
+  setTimeout(() => {
+    dispatch(unflipCardAC(firstCard))
+    dispatch(unflipCardAC(secondCard))
+    dispatch(resetBoard())
+  }, 1000)
+}
+
+export const flipCard = (id) => (dispatch, getState) => {
+  const currentState = getState()
+  if (currentState.lockBoard) return
+  if (id === currentState.firstCard) return
+  dispatch(flipCardAC(id))
+
+  if (!currentState.hasFlippedCard) {
+    dispatch(setFlippedCard(true))
+    dispatch(setFirstCard(id))
+  } else {
+    dispatch(checkForMatch(currentState.firstCard, id))
+  }
+}
+
+export const checkForMatch = (firstCard, secondCard) => (
+  dispatch,
+  getState
+) => {
+  const currentState = getState()
+  if (currentState.firstCard === null) return
+  if (
+    currentState.cards[firstCard].type === currentState.cards[secondCard].type
+  ) {
+    dispatch(disableCards(firstCard, secondCard))
+  } else {
+    dispatch(unflipCards(firstCard, secondCard))
+  }
 }
 
 export const setLockBoard = (lockBoardState) => {
