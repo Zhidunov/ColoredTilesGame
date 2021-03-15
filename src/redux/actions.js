@@ -50,10 +50,11 @@ export const resetBoard = () => {
   }
 }
 
-export const resetGame = () => {
-  return {
+export const resetGame = () => async (dispatch) => {
+  dispatch({
     type: RESET_GAME,
-  }
+  })
+  setTimeout(() => dispatch(mixCards()), 1000)
 }
 
 export const setLockBoard = (lockBoardState) => {

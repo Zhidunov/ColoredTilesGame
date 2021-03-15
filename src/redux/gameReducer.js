@@ -163,7 +163,7 @@ export const gameReducer = (state = initialState, action) => {
           order: Math.floor(Math.random() * 16),
         }
       })
-      return { ...state, cards: cardsWithRandomPos }
+      return { ...state, lockBoard: false, cards: cardsWithRandomPos }
     }
 
     case FLIP_CARD: {
@@ -209,15 +209,14 @@ export const gameReducer = (state = initialState, action) => {
       }
     }
     case RESET_GAME: {
-      const cardsWithRandomPos = state.cards.map((card) => {
+      const resetCards = state.cards.map((card) => {
         return {
           ...card,
           flipped: false,
           onListen: true,
-          order: Math.floor(Math.random() * 16),
         }
       })
-      return { ...initialState, cards: cardsWithRandomPos }
+      return { ...initialState, lockBoard: true, cards: resetCards }
     }
 
     case SET_LOCK_BOARD: {
