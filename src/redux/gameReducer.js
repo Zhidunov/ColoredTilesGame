@@ -8,6 +8,8 @@ import {
   SET_LOCK_BOARD,
   SET_FIRST_CARD,
   RESET_GAME,
+  SET_RESET_LOADING,
+  SET_MATCHED_PAIRS,
 } from "src/redux/types"
 import beer from "src/assets/img/beer.png"
 import burger from "src/assets/img/burger.png"
@@ -152,6 +154,8 @@ const initialState = {
   hasFlippedCard: false,
   lockBoard: false,
   firstCard: null,
+  gameIsResetting: false,
+  matchedPairs: 0,
 }
 
 export const gameReducer = (state = initialState, action) => {
@@ -191,6 +195,10 @@ export const gameReducer = (state = initialState, action) => {
       return { ...state, hasFlippedCard: action.hasFlippedCard }
     }
 
+    case SET_MATCHED_PAIRS: {
+      return { ...state, matchedPairs: action.matchedPairs }
+    }
+
     case REMOVE_LISTENER: {
       const cards = state.cards.map((card) => {
         if (card.id === action.id) {
@@ -217,11 +225,20 @@ export const gameReducer = (state = initialState, action) => {
           onListen: false,
         }
       })
-      return { ...initialState, lockBoard: true, cards: resetCards }
+      return {
+        ...initialState,
+        lockBoard: true,
+        gameIsResetting: true,
+        cards: resetCards,
+      }
     }
 
     case SET_LOCK_BOARD: {
       return { ...state, lockBoard: action.lockBoardState }
+    }
+
+    case SET_RESET_LOADING: {
+      return { ...state, gameIsResetting: action.gameIsResetting }
     }
 
     case SET_FIRST_CARD: {

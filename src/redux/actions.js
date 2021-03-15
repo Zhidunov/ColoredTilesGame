@@ -8,6 +8,8 @@ import {
   SET_LOCK_BOARD,
   SET_FIRST_CARD,
   RESET_GAME,
+  SET_RESET_LOADING,
+  SET_MATCHED_PAIRS,
 } from "src/redux/types"
 
 export const mixCards = () => {
@@ -27,6 +29,13 @@ export const setFlippedCard = (hasFlippedCard) => {
   return {
     type: SET_FLIPPED_CARD,
     hasFlippedCard,
+  }
+}
+
+export const setMatchedPairs = (matchedPairs) => {
+  return {
+    type: SET_MATCHED_PAIRS,
+    matchedPairs,
   }
 }
 
@@ -50,17 +59,27 @@ export const resetBoard = () => {
   }
 }
 
+export const setResetLoading = (gameIsResetting) => {
+  return {
+    type: SET_RESET_LOADING,
+    gameIsResetting,
+  }
+}
+
 export const resetGame = () => (dispatch) => {
   dispatch({
     type: RESET_GAME,
   })
-  setTimeout(async () => {
+  setTimeout(() => {
     dispatch(mixCards())
     dispatch(setLockBoard(false))
+    dispatch(setResetLoading(false))
+    dispatch(setMatchedPairs(0))
   }, 700)
 }
 
-export const disableCards = (firstCard, secondCard) => (dispatch) => {
+export const disableCards = (firstCard, secondCard) => (dispatch, getState) => {
+  dispatch(setMatchedPairs(getState().matchedPairs + 1))
   dispatch(removeListener(firstCard))
   dispatch(removeListener(secondCard))
   dispatch(resetBoard())

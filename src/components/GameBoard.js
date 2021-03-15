@@ -25,11 +25,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { mixCards, flipCard })(GameBoard)
 
 const Root = styled.div`
-  width: 100vh;
-  height: 100vh;
-  margin: auto;
+  width: 650px;
   display: flex;
   flex-wrap: wrap;
   user-select: none;
-  border: 1px solid red;
 `
