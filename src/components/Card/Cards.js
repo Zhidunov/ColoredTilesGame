@@ -1,18 +1,29 @@
-import React, { useState } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import {
   flipCardAC,
   setFlippedCard,
   removeListener,
-  unflipCardAC
+  unflipCardAC,
+  resetBoard,
+  setLockBoard,
+  setFirstCard,
 } from "src/redux/actions"
 import Card from "src/components/Card/Card"
 
-const Cards = ({flipCardAC, hasFlippedCard, setFlippedCard, cards, removeListener, unflipCardAC, }) => {
-
-  let [lockBoard, setLockBoard] = useState(false)
-  let [firstCard, setFirstCard] = useState(null)
-
+const Cards = ({
+  flipCardAC,
+  hasFlippedCard,
+  setFlippedCard,
+  cards,
+  removeListener,
+  unflipCardAC,
+  resetBoard,
+  setLockBoard,
+  setFirstCard,
+  lockBoard,
+  firstCard,
+}) => {
   const flipCard = (id) => {
     if (lockBoard) return
     if (id === firstCard) return
@@ -27,6 +38,7 @@ const Cards = ({flipCardAC, hasFlippedCard, setFlippedCard, cards, removeListene
   }
 
   const checkForMatch = (firstCard, secondCard) => {
+    if (firstCard === null) return
     if (cards[firstCard].type === cards[secondCard].type) {
       disableCards(firstCard, secondCard)
     } else {
@@ -50,25 +62,24 @@ const Cards = ({flipCardAC, hasFlippedCard, setFlippedCard, cards, removeListene
     }, 1000)
   }
 
-  const resetBoard = () => {
-    setFlippedCard(false)
-    setLockBoard(false)
-    setFirstCard(null)
-  }
-
-  return cards.map((card) => (
-    <Card flipCard={flipCard} card={card} key={card.id} />
+  return cards.map((card, index) => (
+    <Card flipCard={flipCard} card={card} key={index} />
   ))
 }
 
 const mapStateToProps = (state) => ({
-    cards: state.game.cards,
-    hasFlippedCard: state.game.hasFlippedCard
-  })
+  cards: state.game.cards,
+  hasFlippedCard: state.game.hasFlippedCard,
+  firstCard: state.game.firstCard,
+  lockBoard: state.game.lockBoard,
+})
 
 export default connect(mapStateToProps, {
   flipCardAC,
   setFlippedCard,
   removeListener,
   unflipCardAC,
+  resetBoard,
+  setLockBoard,
+  setFirstCard,
 })(Cards)

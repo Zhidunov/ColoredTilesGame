@@ -4,6 +4,10 @@ import {
   SET_FLIPPED_CARD,
   REMOVE_LISTENER,
   UNFLIP_CARD,
+  RESET_BOARD,
+  SET_LOCK_BOARD,
+  SET_FIRST_CARD,
+  RESET_GAME,
 } from "src/redux/types"
 import beer from "src/assets/img/beer.png"
 import burger from "src/assets/img/burger.png"
@@ -146,6 +150,8 @@ const initialState = {
     },
   ],
   hasFlippedCard: false,
+  lockBoard: false,
+  firstCard: null,
 }
 
 export const gameReducer = (state = initialState, action) => {
@@ -192,6 +198,34 @@ export const gameReducer = (state = initialState, action) => {
         return card
       })
       return { ...state, cards }
+    }
+
+    case RESET_BOARD: {
+      return {
+        ...state,
+        hasFlippedCard: false,
+        lockBoard: false,
+        firstCard: null,
+      }
+    }
+    case RESET_GAME: {
+      const cardsWithRandomPos = state.cards.map((card) => {
+        return {
+          ...card,
+          flipped: false,
+          onListen: true,
+          order: Math.floor(Math.random() * 16),
+        }
+      })
+      return { ...initialState, cards: cardsWithRandomPos }
+    }
+
+    case SET_LOCK_BOARD: {
+      return { ...state, lockBoard: action.lockBoardState }
+    }
+
+    case SET_FIRST_CARD: {
+      return { ...state, firstCard: action.id }
     }
 
     default:

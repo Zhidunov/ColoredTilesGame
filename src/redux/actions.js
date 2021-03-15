@@ -4,6 +4,10 @@ import {
   SET_FLIPPED_CARD,
   REMOVE_LISTENER,
   UNFLIP_CARD,
+  RESET_BOARD,
+  SET_LOCK_BOARD,
+  SET_FIRST_CARD,
+  RESET_GAME,
 } from "src/redux/types"
 
 export const mixCards = () => {
@@ -36,6 +40,32 @@ export const removeListener = (id) => {
 export const unflipCardAC = (id) => {
   return {
     type: UNFLIP_CARD,
+    id,
+  }
+}
+
+export const resetBoard = () => {
+  return {
+    type: RESET_BOARD,
+  }
+}
+
+export const resetGame = () => {
+  return {
+    type: RESET_GAME,
+  }
+}
+
+export const setLockBoard = (lockBoardState) => {
+  return {
+    type: SET_LOCK_BOARD,
+    lockBoardState,
+  }
+}
+
+export const setFirstCard = (id) => {
+  return {
+    type: SET_FIRST_CARD,
     id,
   }
 }
